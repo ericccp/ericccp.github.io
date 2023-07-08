@@ -1,0 +1,30 @@
+---
+
+---
+  
+  <ul x-data class="container p-2 mx-auto" aria-multiselectable="true">
+    <template x-for="i in 4">
+      <li 
+        x-id="['accordion-header-id', 'accordion-panel-id']" 
+        x-data="accordionComponent" 
+        class="mb-2">
+        <button :id="$id('accordion-header-id')" role="tab" :aria-controls="$id('accordion-panel-id')" :aria-expanded="show" x-text="`Project #${i}`" @click="show = !show" class="text-white block bg-orange-500 p-4 w-full rounded-xl"></button>
+        </button>
+        <div :id="$id('accordion-panel-id')" role="tabpanel" :aria-labelledby="$id('accordion-header-id')" :aria-hidden="show ? 'false' : 'true'" x-show="show" x-transition class="py-2 px-4">
+          <p>Project Title</p><br>
+          <p>Project description</p>
+        </div>
+      </li>
+
+    </template>
+  </ul>
+
+
+
+<script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('accordionComponent', () => ({
+        show: false
+      }))
+    })
+</script>

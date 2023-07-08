@@ -1,0 +1,58 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+import Nav from '../components/Nav.astro';
+
+import Chart from 'chart.js/auto';
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script>
+			// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+			if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark')
+			}
+		</script>
+	</head>
+	<body class="font-mono ">
+		<Nav title="Eric Perez's Site"/>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 242, 68, 5;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #FA7F08 30%, white 60%);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+	}
+</style>

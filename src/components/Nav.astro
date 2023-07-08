@@ -1,0 +1,182 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+---
+<div class="mx-auto sticky top-0 w-full bg-white z-40 border-b-2 border-gray-100">
+
+<!-- Navbar -->
+<nav
+x-data="{ open: false }"
+@keydown.window.escape="open = false"
+class="max-w-6xl mx-auto sticky top-0"
+>
+<!-- Large screen block -->
+<div class="container px-6 mx-auto lg:px-8">
+  <div class="flex items-center justify-between h-16">
+    <div class="flex items-center justify-between flex-grow">
+      
+      <!-- Icon and Site Title -->
+      <div class="flex items-center flex-shrink-0 mr-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="--accent" class="w-6 h-6 ">
+          <path fill="#F24405" fill-rule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177A7.547 7.547 0 016.648 6.61a.75.75 0 00-1.152-.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 011.925-3.545 3.75 3.75 0 013.255 3.717z" clip-rule="evenodd" />
+        </svg>
+        <span class="pl-1 font-bold tracking-tightest">{title}</span>
+      </div>
+
+      <!-- Hamburger Menu Icon (shows on small screens only) -->
+      <div class="hidden lg:block">
+        <div class="flex items-center">
+          
+          {[
+            ['Home', '/'],
+            ['About Me', '/About'],
+            ['Projects', '/Projects'],
+            ['Gists', '/Gists'],
+            ['ToDo', '/ToDo'],
+            // ['Cheat Sheets', '/CheatSheets'],
+          ].map(([title, url]) => (
+          <div class="nav-link">
+            <a
+            href={url}
+            class="flex flex-row items-center px-3 py-2 text-sm font-medium  bg-red-900 rounded-md focus:outline-none focus:text-black focus:bg-red-500 hover:text-black"
+            >
+              <span class="">{title}</span>
+            </a>
+          </div>
+          ))}
+          
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flex -mr-2 lg:hidden">
+      <div class="nav-link">
+        <button
+        @click="open = !open"
+        class="inline-flex items-center justify-center p-2 text-gray-400 rounded-lg hover:text-white focus:text-white"
+        x-bind:aria-label="open ? 'Close main menu' : 'Main menu'"
+        x-bind:aria-expanded="open"
+      >
+        <svg
+          class="w-6 h-6"
+          stroke="currentColor"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            :class="{'hidden': open, 'inline-flex': !open }"
+            class="inline-flex"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+          <path
+            :class="{'hidden': !open, 'inline-flex': open }"
+            class="hidden"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Mobile screen block -->
+  <div :class="{'block': open, 'hidden': !open}" class="z-40 hidden lg:hidden bg-white">
+    <div class="container px-6 mx-auto">
+      <div class="pt-2 pb-3">
+        {[
+            ['Home', '/'],
+            ['About Me', '/About'],
+            ['Projects', '/Projects'],
+            ['Gists', '/Gists'],
+            ['ToDo', '/ToDo'],
+            // ['Cheat Sheets', '/CheatSheets'],
+          ].map(([title, url]) => (
+          <div class="nav-link">
+          <a
+            href={url}
+            class="flex flex-row items-center px-3 py-2 text-base font-medium rounded-md"
+          >
+            <span class="">{title}</span>
+          </a>
+          </div>
+          ))}
+      </div>
+    </div>
+    
+  </div>
+</nav>
+</div>
+
+<style>
+	strong {
+		color: rgb(var(--accent));
+	}
+
+	.nav-link {
+		list-style: none;
+		display: flex;
+		padding: 0.25rem;
+		background-color: white;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 0.6rem;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		/* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); */
+	}
+
+	.nav-link > a {
+		width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		/* padding: 1rem 1.3rem; */
+		border-radius: 0.35rem;
+		color: #111;
+		background-color: white;
+		opacity: 0.8;
+	}
+	.nav-link > button {
+		width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		/* padding: 1rem 1.3rem; */
+		border-radius: 0.35rem;
+		background-color: white;
+		opacity: 0.8;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+		color: #444;
+	}
+	.nav-link:is(:hover, :focus-within) {
+		background-position: 0;
+		background-image: var(--accent-gradient);
+	}
+	.nav-link:is(:hover, :focus-within) button {
+		color: rgb(var(--accent));
+	}
+  .nav-link:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent));
+	}
+</style>
+
+<script>
+  // import "../scripts/menu.js";
+
+
+</script>
