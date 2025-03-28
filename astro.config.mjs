@@ -12,5 +12,8 @@ export default defineConfig({
   output: 'static',
   integrations: [
     mdx()
-  ]
+  ],
+  adapter: node({
+    mode: 'standalone'
+  })
 });
