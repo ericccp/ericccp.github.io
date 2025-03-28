@@ -51,8 +51,5 @@ export default defineConfig({
         lang: 'en',
       }
     })
-  ],
-  adapter: node({
-    mode: 'standalone'
-  })
+  ]
 });
