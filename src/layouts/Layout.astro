@@ -5,7 +5,6 @@ import '../styles/globals.css';
 import Background from '../components/Background.astro';
 import Navbar from '../components/Navbar.astro';
 import LayoutGrid from '../components/LayoutGrid.astro';
-import { name, themeColor, twitterHandle } from 'spectre:globals';
 
 interface Props {
 	title: string;
@@ -31,8 +30,6 @@ const { title, description, image, pagefindIgnore, article } = Astro.props;
 
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
-		<meta name="theme-color" content={themeColor}>
-
 		<link rel="canonical" href={Astro.site} />
 
 		<meta name="og:title" content={title} />
@@ -53,10 +50,6 @@ const { title, description, image, pagefindIgnore, article } = Astro.props;
 		)}
 
 		<meta name="twitter:card" content="summary_large_image" />
-		{twitterHandle && (
-			<meta name="twitter:site" content={twitterHandle} />
-			<meta name="twitter:creator" content={twitterHandle} />
-		)}
 		<meta name="twitter:title" content={title} />
 		{description && <meta name="twitter:description" content={description} />}
 		<meta name="twitter:image" content={image?.src || '/img/og.png'} />
