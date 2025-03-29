@@ -6,10 +6,24 @@ import Card from "../components/Card.astro";
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 
+const currDate = new Date();
+
+let projects = [
+  {
+    id: "", 
+    data: 
+      {
+        id: "", 
+        date: currDate, 
+        description: "", 
+        title: "", 
+      }
+  }
+];
+
 ---
 <Layout
-	title={openGraph.projects.title || "Projects"}
-	description={openGraph.projects.description}
+	title={"Projects"}
 	pagefindIgnore
 >
   <div class="layout-grid-left" slot="left">
