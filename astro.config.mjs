@@ -9,7 +9,7 @@ const SITE_URL = 'https://ericccp.github.io';
 
 export default defineConfig({
   site: SITE_URL,
-
+  base: '/ericccp.github.io/',
   integrations: [sitemap()],
 
   // Prefetches internal links on hover/viewport entry for near-instant navigation.
