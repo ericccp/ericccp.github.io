@@ -1,53 +1,54 @@
 <div align="center">
 
-# Portfolio Starter
+# Eric P — Portfolio & Blog
 
-A minimal, professional portfolio template for **Astro**. Built for people who want
-something that looks intentional on day one, without a component library you didn't ask for.
+Personal site built with **Astro** — selected ServiceNow / ITAM work, plus a blog for
+longer posts, reusable code snippets, and troubleshooting write-ups.
 
-[**Live Demo**](https://astro-starter-portfolio.vercel.app) · [Report an issue](https://github.com/BracoZS/astro-starter-portfolio/issues)
+[**Live site**](https://ericccp.github.io)
 
 </div>
 
 <br />
 
 <div align="center">
-  <img src="./public/og-image.png" alt="Portfolio Starter preview" width="100%" style="max-width: 720px; border-radius: 8px;" />
+  <img src="./public/og-image.png" alt="Site preview" width="100%" style="max-width: 720px; border-radius: 8px;" />
 </div>
 
 <br />
 
-## Features
+## Stack
 
 - **Astro 7** — static output, zero client-side JavaScript by default
-- **Tailwind CSS v4** — CSS-first config, no `tailwind.config.js` needed
-- **Content Collections** with a typed Zod schema — add a project by dropping a Markdown file in `src/content/work/`
+- **Tailwind CSS v4** — CSS-first config, no `tailwind.config.js`
+- **Content Collections** with a typed Zod schema — work and blog entries are just Markdown files
 - **Light & dark mode** — class-based, no flash of unstyled theme on load
-- **Astro Fonts API** — self-hosted Google Fonts, zero layout shift, no third-party requests
+- **Astro Fonts API** — self-hosted Google Fonts, zero layout shift
 - **View Transitions** — smooth navigation between pages
-- **SEO defaults done right** — canonical URLs, Open Graph, Twitter cards, auto-generated sitemap
-- **Strict TypeScript** — `astro/tsconfigs/strict`, path aliases (`@/components/*`, etc.)
-- **Prettier**, pre-configured for `.astro` files and Tailwind class sorting
-- One accent color and two font variables control the entire visual identity
+- **SEO defaults** — canonical URLs, Open Graph, Twitter cards, auto-generated sitemap
+- **Strict TypeScript**, path aliases (`@/components/*`, etc.)
+- Deploys to GitHub Pages via GitHub Actions on every push to `main` (see `.github/workflows/deploy.yml`)
 
-No state management, no UI kit, no CMS integration —
-add those yourself if your project actually needs them.
+## Sections
 
-## Quick start
+- **Work** (`/work`) — case studies, one Markdown file per project in `src/content/work/`
+- **Blog** (`/blog`) — posts, code snippets, and solution write-ups in `src/content/blog/`,
+  filterable by type on the listing page
+- **About** (`/about`)
+
+## Local development
 
 ```bash
-git clone https://github.com/BracoZS/astro-starter-portfolio.git
-cd astro-starter-portfolio
+git clone https://github.com/ericccp/ericccp.github.io.git
+cd ericccp.github.io
 pnpm install
 pnpm dev
 ```
 
-> Any package manager works.
-
 Open `http://localhost:4321`.
 
 | Command        | Action                                             |
-| -------------- | -------------------------------------------------- |
+| -------------- | --------------------------------------------------- |
 | `pnpm dev`     | Start the local dev server                         |
 | `pnpm build`   | Type-check, then build for production to `./dist/` |
 | `pnpm preview` | Preview the production build locally               |
@@ -59,45 +60,36 @@ Open `http://localhost:4321`.
 ```text
 ├── public/
 │   ├── favicon.svg
-│   ├── favicons/
-│   ├── og-image.png          # replace with your own 1200×630 image
+│   ├── og-image.png
 │   └── robots.txt
 ├── src/
-│   ├── assets/               # static images and assets
-│   ├── components/           # BaseHead, Button, Footer, Header, SectionHeading, ThemeToggle, WorkRow
+│   ├── assets/                 # static images and assets
+│   ├── components/             # BaseHead, Button, Footer, Header, SectionHeading,
+│   │                           # ThemeToggle, WorkRow, BlogRow
 │   ├── content/
-│   │   └── work/*.md         # one file per project
+│   │   ├── work/*.md           # one file per project
+│   │   └── blog/*.md           # one file per post / snippet / solution
 │   ├── layouts/
-│   │   └── BaseLayout.astro  # <head>, SEO, fonts, theme script
+│   │   └── BaseLayout.astro    # <head>, SEO, fonts, theme script
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── about.astro
 │   │   ├── work/[id].astro
+│   │   ├── blog/[id].astro
 │   │   └── 404.astro
 │   ├── styles/
-│   │   └── global.css        # design tokens + Tailwind import
+│   │   └── global.css          # design tokens + Tailwind import
 │   ├── utils/
-│   │   └── formatDate.ts     # date formatting helpers
-│   ├── content.config.ts     # Zod schema for the "work" collection
-│   └── site.config.ts        # name, bio, email, social links
+│   │   └── formatDate.ts
+│   ├── content.config.ts       # Zod schemas for "work" and "blog" collections
+│   └── site.config.ts          # name, bio, email, social links, nav
 ├── astro.config.mjs
 └── tsconfig.json
 ```
 
-## Customizing
+## Adding content
 
-**Your info.** Edit `src/site.config.ts` — name, tagline, email, and social links are
-read from this one file by the header, footer, and homepage.
-
-**Colors.** Edit the five custom properties at the top of `src/styles/global.css`
-(`--paper`, `--ink`, `--ink-soft`, `--signal`, `--line`). Every component reads from
-these tokens, so changing them re-skins the whole site.
-
-**Fonts.** Swap the three families in the `fonts` array in `astro.config.mjs`. Any
-family available from Google Fonts works — Astro self-hosts it automatically.
-
-**Projects.** Add a Markdown file to `src/content/work/`. Required frontmatter is
-enforced by the schema in `src/content.config.ts`:
+**A work entry.** Add a Markdown file to `src/content/work/`:
 
 ```md
 ---
@@ -105,7 +97,7 @@ title: Project Name
 summary: One sentence, shown in the list view.
 role: Your role on the project
 date: 2026-01-15
-tags: [Astro, TypeScript]
+tags: [ServiceNow, JavaScript]
 url: https://example.com # optional
 repo: https://github.com/... # optional
 featured: true # optional, shows it first on the homepage
@@ -114,17 +106,43 @@ featured: true # optional, shows it first on the homepage
 Full write-up in Markdown.
 ```
 
-**Open Graph image.** Replace `public/og-image.png` with your own 1200×630 image.
+**A blog entry.** Add a Markdown file to `src/content/blog/`:
+
+```md
+---
+title: Post Title
+summary: One sentence, shown in the list view.
+type: post # post | snippet | solution
+date: 2026-01-15
+tags: [ServiceNow]
+language: JavaScript # optional, shown for snippets/solutions
+featured: false
+---
+
+Full write-up in Markdown. Code fences get syntax highlighting automatically.
+```
+
+`type` drives the badge and filter on `/blog` — use `post` for long-form writing,
+`snippet` for reusable code, `solution` for a specific problem and its fix.
+
+## Customizing
+
+**Site info.** Edit `src/site.config.ts` — name, tagline, email, social links, and nav
+links are read from this one file by the header, footer, and homepage.
+
+**Colors.** Edit the five custom properties at the top of `src/styles/global.css`
+(`--paper`, `--ink`, `--ink-soft`, `--signal`, `--line`). Every component reads from
+these tokens.
+
+**Fonts.** Swap the three families in the `fonts` array in `astro.config.mjs`.
 
 ## Deploying
 
-This is a static site — it deploys anywhere that serves static files. See Astro's
-[deployment guides](https://docs.astro.build/en/guides/deploy/) for
-Vercel, Netlify, Cloudflare Pages, and others. Remember to update the `site` value
-in `astro.config.mjs` to your real domain before building — it's used for the
-sitemap and canonical URLs.
+Static build, deployed to GitHub Pages on every push to `main` via
+`.github/workflows/deploy.yml`. The `site` value in `astro.config.mjs` is set to
+`https://ericccp.github.io` and drives the sitemap and canonical URLs — update it if
+the domain ever changes.
 
 ## License
 
-MIT — see [LICENSE](./LICENSE). Free to use for personal or commercial projects,
-attribution appreciated but not required.
+MIT — see [LICENSE](./LICENSE).
