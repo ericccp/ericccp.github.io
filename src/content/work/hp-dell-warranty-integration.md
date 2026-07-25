@@ -8,7 +8,7 @@ featured: true
 draft: false
 ---
 
-![Warranty-Integration](src/assets/images/warranty-integration.png)
+![Warranty-Integration](../../assets/images/warranty-integration.png)
 
 Warranty status on hardware assets was going stale. Nobody was manually re-checking coverage dates against the manufacturer once an asset was provisioned, which meant the org sometimes found out a device was out of warranty only when it broke.
 

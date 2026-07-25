@@ -9,7 +9,7 @@ featured: false
 draft: false
 ---
 
-![Cost-Center-Ownership](src/assets/images/cost-center-ownership.png)
+![Cost-Center-Ownership](../../assets/images/cost-center-ownership.png)
 
 Device ownership gaps are rarely caused by a complete lack of data. More often, the useful data already exists but is spread across different systems and records.
 

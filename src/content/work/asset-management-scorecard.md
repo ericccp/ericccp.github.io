@@ -29,3 +29,5 @@ I built an **Asset Management Scorecard** in ServiceNow that consolidates the mo
 Rather than treating each metric as an isolated report, the scorecard combines them into an operating model. A low domain score immediately shows where the program requires attention, while the underlying indicators explain the specific data or process gaps causing the result.
 
 **Result:** gave the ITAM program a repeatable way to measure maturity, expose accountability gaps, and prioritize improvements. Leadership can now see both the overall health of the program and the operational metrics influencing the score without reviewing multiple disconnected reports.
+
+![Employee-Portal](../../assets/images/employee-portal.png)

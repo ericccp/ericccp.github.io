@@ -8,7 +8,7 @@ featured: true
 draft: false
 ---
 
-![Event-Driven-Asset-Notifications](src/assets/images/event-driven-asset-notifications.png)
+![Event-Driven-Asset-Notifications](../../assets/images/event-driven-asset-notifications.png)
 
 Asset processes were moving forward in ServiceNow, but customers often had limited visibility into what was happening.
 

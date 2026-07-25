@@ -8,7 +8,7 @@ featured: true
 draft: false
 ---
 
-![HAW-Important-Actions](src/assets/images/haw-important-actions.png)
+![HAW-Important-Actions](../../assets/images/haw-important-actions.png)
 
 Data quality problems rarely show up all at once.
 

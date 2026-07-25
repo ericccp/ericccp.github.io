@@ -8,7 +8,7 @@ featured: true
 draft: false
 ---
 
-![Clenase-Hardware-Model](src/assets/images/cleanse-hardware-model.png)
+![Clenase-Hardware-Model](../../assets/images/cleanse-hardware-model.png)
 
 Hardware asset imports usually depend on one important prerequisite: the corresponding hardware model must already exist in ServiceNow.
 

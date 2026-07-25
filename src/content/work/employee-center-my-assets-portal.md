@@ -28,4 +28,4 @@ The software license portion was especially valuable because employees did not p
 
 **Future enhancement:** add a dedicated device detail page that provides a glimpse into the asset's overall lifecycle, including key assignment, support, warranty, refresh, and return information.
 
-![Employee-Portal](src/assets/images/employee-portal.png)
+![Employee-Portal](../../assets/images/employee-portal.png)
