@@ -1,0 +1,73 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { formatDate } from '@/utils/formatDate';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('blog', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, summary, date, tags, type, language } = entry.data;
+const { Content } = await render(entry);
+
+const formattedDate = formatDate(date);
+
+const typeLabels: Record<typeof type, string> = {
+  post: 'Post',
+  snippet: 'Snippet',
+  solution: 'Solution',
+};
+---
+
+<BaseLayout title={title} description={summary}>
+  <article class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <a href="/blog" class="text-ink-soft hover:text-signal font-mono text-xs transition-colors pr-2">
+      ← All posts
+    </a>
+
+    <p
+      class="text-signal border-signal/40 mt-6 inline-block rounded-full border px-2 py-0.5 font-mono text-[10px] tracking-wide uppercase"
+    >
+      {typeLabels[type]}
+    </p>
+
+    <h1 class="font-display text-ink mt-4 max-w-2xl text-3xl font-medium sm:text-4xl">
+      {title}
+    </h1>
+
+    <dl
+      class="border-line text-ink-soft mt-6 flex flex-wrap gap-x-8 gap-y-2 border-y py-4 font-mono text-xs"
+    >
+      <div><dt class="inline">Date — </dt><dd class="inline">{formattedDate}</dd></div>
+      {
+        language && (
+          <div>
+            <dt class="inline">Language — </dt>
+            <dd class="inline">{language}</dd>
+          </div>
+        )
+      }
+      {
+        tags.length > 0 && (
+          <div>
+            <dt class="inline">Tags — </dt>
+            <dd class="inline">{tags.join(', ')}</dd>
+          </div>
+        )
+      }
+    </dl>
+
+    <div class="prose prose-sm sm:prose-base mt-10 max-w-2xl">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

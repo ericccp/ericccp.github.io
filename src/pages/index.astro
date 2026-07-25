@@ -1,285 +1,108 @@
 ---
-const projects = [
-  {
-    title: 'ServiceNow Asset Management',
-    description:
-      'Tools and workflows for improving hardware asset accountability.',
-    href: '#',
-  },
-  {
-    title: 'Data Engineering Projects',
-    description:
-      'SQL, Python, and data pipeline projects focused on practical business problems.',
-    href: '#',
-  },
-  {
-    title: 'Developer Notes',
-    description:
-      'Technical notes covering ServiceNow, integrations, web development, and automation.',
-    href: '#',
-  },
-];
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import WorkRow from '@/components/WorkRow.astro';
+import BlogRow from '@/components/BlogRow.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { SITE } from '@/site.config';
+
+const allWork = await getCollection('work', ({ data }) => !data.draft);
+const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featured = sorted.filter((entry) => entry.data.featured);
+const rest = sorted.filter((entry) => !entry.data.featured);
+const selected = [...featured, ...rest].slice(0, 5);
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const recentPosts = allPosts.slice(0, 3);
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
-    <meta
-      name="description"
-      content="Personal site and project portfolio for ericccp."
-    />
-    <title>ericccp | Developer</title>
-  </head>
+<BaseLayout title={SITE.name}>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
+    <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
+      <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
+      {SITE.status}
+    </p>
 
-  <body>
-    <header class="site-header">
-      <a class="brand" href="/">ericccp</a>
+    <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
+      {SITE.tagline}
+    </h1>
 
-      <nav aria-label="Primary navigation">
-        <a href="/about/">About</a>
-        <a href="/projects/">Projects</a>
-        <a href="https://github.com/ericcp">GitHub</a>
-      </nav>
-    </header>
+    <p class="text-ink-soft mt-6 max-w-md">
+      {SITE.role} — based on the work below, not a list of buzzwords.
+    </p>
 
-    <main>
-      <section class="hero">
-        <p class="eyebrow">ServiceNow Developer · Data Engineer</p>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <Button href="/work" variant="solid">View the work →</Button>
+      <!-- <Button href="#contact" variant="ghost">Say hello</Button> -->
+    </div>
+  </section>
 
-        <h1>I build systems that make enterprise work easier.</h1>
-
-        <p class="intro">
-          I work across ServiceNow, data engineering, integrations, and web
-          development. This site documents my projects and what I am learning.
-        </p>
-
-        <div class="actions">
-          <a class="button primary" href="#projects">View my work</a>
-          <a class="button secondary" href="https://github.com/ericccp">
-            Visit GitHub
+  <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow="Selected work" count={allWork.length} />
+    <div>
+      {selected.map((entry) => <WorkRow entry={entry} />)}
+    </div>
+    {
+      allWork.length > selected.length && (
+        <div class="mt-6">
+          <a
+            href="/work"
+            class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
+          >
+            View all {allWork.length} projects →
           </a>
         </div>
-      </section>
+      )
+    }
+  </section>
 
-      <section id="about">
-        <p class="section-label">About</p>
-        <h2>Building practical tools for real operational problems.</h2>
-
-        <p>
-          My work focuses on ServiceNow development, IT asset management,
-          automation, APIs, SQL, and data pipelines. I enjoy turning manual
-          processes into maintainable applications and measurable workflows.
-        </p>
-      </section>
-
-      <section id="projects">
-        <p class="section-label">Selected work</p>
-        <h2>Projects</h2>
-
-        <div class="project-grid">
-          {
-            projects.map((project) => (
-              <article class="project-card">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <a href={project.href}>View project →</a>
-              </article>
-            ))
-          }
+  <section id="blog" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow="From the blog" count={allPosts.length} />
+    <div>
+      {recentPosts.map((entry) => <BlogRow entry={entry} />)}
+    </div>
+    {
+      allPosts.length === 0 && (
+        <p class="text-ink-soft font-mono text-sm">Nothing published yet — check back soon.</p>
+      )
+    }
+    {
+      allPosts.length > recentPosts.length && (
+        <div class="mt-6">
+          <a
+            href="/blog"
+            class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
+          >
+            View all {allPosts.length} posts →
+          </a>
         </div>
-      </section>
-    </main>
-
-    <footer>
-      <p>© {new Date().getFullYear()} ericccp</p>
-    </footer>
-  </body>
-</html>
-
-<style>
-  :global(*) {
-    box-sizing: border-box;
-  }
-
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(body) {
-    margin: 0;
-    background: #f7f7f5;
-    color: #171717;
-    font-family:
-      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", sans-serif;
-    line-height: 1.6;
-  }
-
-  :global(a) {
-    color: inherit;
-  }
-
-  .site-header {
-    width: min(1100px, calc(100% - 40px));
-    margin: 0 auto;
-    padding: 24px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .brand {
-    font-size: 1.1rem;
-    font-weight: 750;
-    text-decoration: none;
-  }
-
-  nav {
-    display: flex;
-    gap: 24px;
-  }
-
-  nav a {
-    color: #555;
-    text-decoration: none;
-  }
-
-  nav a:hover {
-    color: #111;
-  }
-
-  main {
-    width: min(1100px, calc(100% - 40px));
-    margin: 0 auto;
-  }
-
-  section {
-    padding: 80px 0;
-  }
-
-  .hero {
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .eyebrow,
-  .section-label {
-    margin: 0 0 16px;
-    color: #555;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    max-width: 900px;
-    margin: 0;
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
-  }
-
-  h2 {
-    max-width: 750px;
-    margin: 0 0 24px;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-  }
-
-  .intro {
-    max-width: 680px;
-    margin: 32px 0;
-    color: #555;
-    font-size: 1.2rem;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .button {
-    display: inline-block;
-    padding: 12px 18px;
-    border: 1px solid #171717;
-    border-radius: 999px;
-    text-decoration: none;
-    font-weight: 650;
-  }
-
-  .primary {
-    background: #171717;
-    color: white;
-  }
-
-  .secondary:hover {
-    background: #e9e9e6;
-  }
-
-  #about > p:last-child {
-    max-width: 760px;
-    color: #555;
-    font-size: 1.15rem;
-  }
-
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  .project-card {
-    min-height: 240px;
-    padding: 24px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 18px;
-  }
-
-  .project-card h3 {
-    margin-top: 0;
-    font-size: 1.35rem;
-  }
-
-  .project-card p {
-    color: #666;
-  }
-
-  .project-card a {
-    font-weight: 700;
-  }
-
-  footer {
-    width: min(1100px, calc(100% - 40px));
-    margin: 0 auto;
-    padding: 40px 0;
-    color: #666;
-    border-top: 1px solid #ddd;
-  }
-
-  @media (max-width: 760px) {
-    nav {
-      gap: 14px;
-      font-size: 0.9rem;
+      )
     }
+  </section>
 
-    .hero {
-      min-height: auto;
-      padding-top: 100px;
-    }
+  <section id="about" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow="About" />
+    <p class="text-ink-soft max-w-xl">
+      {SITE.description}
+    </p>
+    <a href="/about" class="text-signal mt-4 inline-block font-mono text-xs hover:underline">
+      More about how I work →
+    </a>
+  </section>
 
-    .project-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+  <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
+    <SectionHeading eyebrow="Let's talk" />
+    <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">
+      Connect with me on LinkedIn
+    </p>
+    <a
+      href={`mailto:${SITE.email}`}
+      class="text-signal mt-4 inline-flex items-center gap-2 font-mono hover:underline"
+    >
+      <!-- {SITE.email} -->
+    </a>
+  </section>
+</BaseLayout>

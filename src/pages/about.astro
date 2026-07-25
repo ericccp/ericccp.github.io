@@ -1,77 +1,51 @@
 ---
-const skills = [
-  'ServiceNow development',
-  'JavaScript',
-  'SQL',
-  'Python',
-  'REST API integrations',
-  'Data engineering',
-  'IT asset management',
-];
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { SITE } from '@/site.config';
+
+const tools = ['ServiceNow', 'JavaScript', 'Python', 'Power Query M', 'DAX', 'REST APIs'];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
-    <meta
-      name="description"
-      content="About ericccp."
-    />
-    <title>About | ericccp</title>
-  </head>
+<BaseLayout title="About" description={`A bit about ${SITE.name} and how they work.`}>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <p class="text-ink-soft mb-6 font-mono text-xs tracking-[0.2em] uppercase">About</p>
 
-  <body>
-    <main>
-      <a href="/">← Home</a>
+    <h1 class="font-display text-ink max-w-xl text-3xl font-medium sm:text-4xl">
+      {SITE.role}
+    </h1>
 
-      <h1>About me</h1>
-
+    <div class="prose prose-sm sm:prose-base mt-8 max-w-xl">
+      
       <p>
-        I am a ServiceNow developer and data engineer focused on building
-        maintainable applications, integrations, and operational workflows.
+        I design and build ServiceNow solutions that turn operational problems into practical, maintainable products.
       </p>
+      <p>
+        Most of my work sits at the intersection of development, IT asset management, automation, and user experience. I build applications, integrations, workflows, dashboards, and self-service experiences that help organizations understand what technology they own, who is responsible for it, where it is, and what should happen next.
+      </p>
+      <p>
+        I tend to start with the smallest useful version of a problem — one workflow, one integration, one data gap, or one manual process — and build that well before expanding outward. That approach has shaped projects ranging from hardware warranty integrations and asset lifecycle automation to Employee Center experiences, operational scorecards, and custom ServiceNow applications.
+      </p>
+      <p>
+        My background in systems administration, mobility, data, and IT operations helps me design beyond the immediate request. I care about the full product: the data model, business process, security controls, automation, reporting, and the experience of the person who ultimately has to use it.
+      </p>
+      <p>
+        Outside of platform work, I build web applications and write about the solutions, patterns, and lessons I find useful along the way.
+      </p>
+    </div>
 
-      <h2>Areas of focus</h2>
-
-      <ul>
-        {skills.map((skill) => <li>{skill}</li>)}
+    <div class="mt-10">
+      <p class="text-ink-soft mb-3 font-mono text-xs tracking-[0.2em] uppercase">Tools</p>
+      <ul class="flex flex-wrap gap-2">
+        {
+          tools.map((tool) => (
+            <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-xs">
+              {tool}
+            </li>
+          ))
+        }
       </ul>
-    </main>
-  </body>
-</html>
+    </div>
 
-<style>
-  :global(body) {
-    margin: 0;
-    background: #f7f7f5;
-    color: #171717;
-    font-family: system-ui, sans-serif;
-    line-height: 1.7;
-  }
-
-  main {
-    width: min(720px, calc(100% - 40px));
-    margin: 0 auto;
-    padding: 80px 0;
-  }
-
-  h1 {
-    margin: 60px 0 24px;
-    font-size: clamp(3rem, 8vw, 5rem);
-    line-height: 1;
-  }
-
-  h2 {
-    margin-top: 48px;
-  }
-
-  p,
-  li {
-    color: #555;
-    font-size: 1.1rem;
-  }
-</style>
+    <!-- <Button href={`mailto:${SITE.email}`} class="mt-10">Get in touch</Button> -->
+  </section>
+</BaseLayout>

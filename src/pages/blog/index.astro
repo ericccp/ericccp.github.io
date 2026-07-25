@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogRow from '@/components/BlogRow.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const filters = [
+  { label: 'All', type: undefined },
+  { label: 'Posts', type: 'post' },
+  { label: 'Snippets', type: 'snippet' },
+  { label: 'Solutions', type: 'solution' },
+] as const;
+---
+
+<BaseLayout
+  title="Blog"
+  description="Posts, code snippets, and troubleshooting write-ups on ServiceNow and frontend development."
+>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <SectionHeading eyebrow="Blog" count={allPosts.length} />
+
+    <div class="mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter by type">
+      {
+        filters.map((filter) => (
+          <button
+            type="button"
+            data-filter={filter.type ?? 'all'}
+            aria-pressed={filter.type === undefined ? 'true' : 'false'}
+            class="border-line text-ink-soft data-[active=true]:border-signal data-[active=true]:text-signal rounded-full border px-3 py-1 font-mono text-xs uppercase tracking-wide transition-colors"
+            data-active={filter.type === undefined ? 'true' : 'false'}
+          >
+            {filter.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div id="blog-list">
+      {
+        allPosts.map((entry) => (
+          <div data-entry-type={entry.data.type}>
+            <BlogRow entry={entry} />
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      allPosts.length === 0 && (
+        <p class="text-ink-soft font-mono text-sm">
+          Nothing published yet — check back soon.
+        </p>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<script>
+  function initBlogFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const rows = document.querySelectorAll<HTMLElement>('[data-entry-type]');
+    if (buttons.length === 0 || buttons[0].dataset.bound) return;
+
+    buttons.forEach((button) => {
+      button.dataset.bound = 'true';
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+
+        buttons.forEach((b) => (b.dataset.active = 'false'));
+        button.dataset.active = 'true';
+
+        rows.forEach((row) => {
+          const show = filter === 'all' || row.dataset.entryType === filter;
+          row.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initBlogFilters);
+</script>
