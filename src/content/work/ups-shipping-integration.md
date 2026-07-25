@@ -8,6 +8,8 @@ featured: true
 draft: false
 ---
 
+![UPS-Shipping-Integration](src/assets/images/ups-shipping-integration.png)
+
 Shipping hardware between locations — new equipment out, broken equipment back for repair — meant leaving ServiceNow entirely to generate a label on UPS's site, then coming back to paste a tracking number into a record by hand. It worked, but it was an extra system and an easy step to forget.
 
 I integrated ServiceNow with the UPS API to generate shipping labels and retrieve tracking information directly from the relevant request or asset record, so the shipping workflow stays inside the platform end to end.

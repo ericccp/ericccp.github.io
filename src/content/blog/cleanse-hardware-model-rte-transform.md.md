@@ -8,6 +8,8 @@ featured: true
 draft: false
 ---
 
+![Clenase-Hardware-Model](src/assets/images/cleanse-hardware-model.png)
+
 Hardware asset imports usually depend on one important prerequisite: the corresponding hardware model must already exist in ServiceNow.
 
 That sounds simple until vendor files start arriving with inconsistent manufacturer names, missing model names, or only a model number. Without some kind of normalization, the import either fails to establish the model reference or creates duplicate records that have to be cleaned up later.

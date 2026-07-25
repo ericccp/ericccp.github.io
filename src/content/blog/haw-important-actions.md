@@ -3,10 +3,12 @@ title: Leveraging Important Actions in Hardware Asset Workspace
 summary: How I extended Hardware Asset Workspace Important Actions to surface data quality issues and operational work that needs attention.
 type: post
 date: 2025-09-25
-tags: [ServiceNow, Hardware Asset Management, Hardware Asset Workspace, Data Quality, JavaScript]
+tags: [ServiceNow, Hardware Asset Workspace, Data Quality, JavaScript]
 featured: true
 draft: false
 ---
+
+![HAW-Important-Actions](src/assets/images/haw-important-actions.png)
 
 Data quality problems rarely show up all at once.
 

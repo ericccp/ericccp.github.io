@@ -7,6 +7,9 @@ tags: [ServiceNow, ITAM, Notifications, Events]
 featured: true
 draft: false
 ---
+
+![Event-Driven-Asset-Notifications](src/assets/images/event-driven-asset-notifications.png)
+
 Asset processes were moving forward in ServiceNow, but customers often had limited visibility into what was happening.
 
 There were gaps during fulfillment, when an employee needed to take action, when an exception occurred, and when a transaction was complete. The process worked, but the communication around it was inconsistent.
