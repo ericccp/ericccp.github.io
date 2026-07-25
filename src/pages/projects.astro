@@ -1,0 +1,77 @@
+---
+const skills = [
+  'ServiceNow development',
+  'JavaScript',
+  'SQL',
+  'Python',
+  'REST API integrations',
+  'Data engineering',
+  'IT asset management',
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <meta
+      name="description"
+      content="Projects by ericccp."
+    />
+    <title>Projects | ericccp</title>
+  </head>
+
+  <body>
+    <main>
+      <a href="/">← Home</a>
+
+      <h1>About me</h1>
+
+      <p>
+        I am a ServiceNow developer and data engineer focused on building
+        maintainable applications, integrations, and operational workflows.
+      </p>
+
+      <h2>Areas of focus</h2>
+
+      <ul>
+        {skills.map((skill) => <li>{skill}</li>)}
+      </ul>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background: #f7f7f5;
+    color: #171717;
+    font-family: system-ui, sans-serif;
+    line-height: 1.7;
+  }
+
+  main {
+    width: min(720px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 80px 0;
+  }
+
+  h1 {
+    margin: 60px 0 24px;
+    font-size: clamp(3rem, 8vw, 5rem);
+    line-height: 1;
+  }
+
+  h2 {
+    margin-top: 48px;
+  }
+
+  p,
+  li {
+    color: #555;
+    font-size: 1.1rem;
+  }
+</style>
