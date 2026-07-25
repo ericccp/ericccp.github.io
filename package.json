@@ -17,9 +17,9 @@
   "author": "Bracozs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/portfolio-starter"
+    "url": "https://github.com/ericccp/ericccp.github.io"
   },
-  "homepage": "https://github.com/your-username/portfolio-starter",
+  "homepage": "https://github.com/ericccp/ericccp.github.io",
   "engines": {
     "node": ">=22.0.0"
   },
