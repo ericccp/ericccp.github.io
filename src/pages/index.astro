@@ -7,6 +7,8 @@ import BlogRow from '@/components/BlogRow.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import { SITE } from '@/site.config';
 
+import ScrollReveal from '../components/ScrollReveal.astro';
+
 const allWork = await getCollection('work', ({ data }) => !data.draft);
 const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const featured = sorted.filter((entry) => entry.data.featured);
@@ -40,107 +42,168 @@ const recentPosts = allPosts.slice(0, 3);
     </div>
   </section>
 
-  <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="Selected work" count={allWork.length} />
-    <div>
-      {selected.map((entry) => <WorkRow entry={entry} />)}
-    </div>
-    {
-      allWork.length > selected.length && (
-        <div class="mt-6">
-          <a
-            href="/work"
-            class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
-          >
-            View all {allWork.length} projects →
-          </a>
-        </div>
-      )
-    }
-  </section>
-
-  <section id="blog" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="From the blog" count={allPosts.length} />
-    <div>
-      {recentPosts.map((entry) => <BlogRow entry={entry} />)}
-    </div>
-    {
-      allPosts.length === 0 && (
-        <p class="text-ink-soft font-mono text-sm">Nothing published yet — check back soon.</p>
-      )
-    }
-    {
-      allPosts.length > recentPosts.length && (
-        <div class="mt-6">
-          <a
-            href="/blog"
-            class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
-          >
-            View all {allPosts.length} posts →
-          </a>
-        </div>
-      )
-    }
-  </section>
-
-  <section id="how_i_work" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="How I work" />
-    <p class="text-ink-soft max-w-xl">
-      <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">01 Understand the operation</h2>
-      <p class="pt-1 pb-4">Start with the people, decisions, and friction behind the request.</p>
-      <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">02 Design the system</h2>
-      <p class="pt-1 pb-4">Define the data model, workflow, permissions, and integration points.</p>
-      <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">03 Build the smallest useful version</h2>
-      <p class="pt-1 pb-4">Deliver an end-to-end product before expanding the feature set.</p>
-      <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">04 Operationalize it</h2>
-      <p class="pb-4">Add reporting, documentation, ownership, and support processes.</p>
-    </p>
-    <Button href="/about" variant="ghost" class="mt-2">More about how I work →</Button>
-  </section>
-
-
-  <section id="capabilities" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="Capabilities" />
-
-    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <ScrollReveal>
+    <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
+      <SectionHeading eyebrow="Selected work" count={allWork.length} />
       <div>
-        <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Platform Engineering</h2>
-        <p class="pt-1 pb-4">Scoped applications, Flow Designer, integrations, portals, workspaces</p>
+        {selected.map((entry) => <WorkRow entry={entry} />)}
       </div>
-      <div>
-        <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Data & Reporting</h2>
-        <p class="pt-1 pb-4">Data modeling, reporting, dashboards, and analytics</p>  
-      </div>
-      <div>
-        <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">IT Asset Management</h2>
-        <p class="pt-1 pb-4">Lifecycle automation, hardware governance, warranty and shipping workflows</p>
-      </div>
-      <div>
-        <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Technical Toolkit</h2>
-        <p class="pb-4">JavaScript, REST APIs, Angular, React, SQL/DAX/PowerQuery M, Astro</p>
-      </div>
-    
-    </div>
+      {
+        allWork.length > selected.length && (
+          <div class="mt-6">
+            <a
+              href="/work"
+              class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
+            >
+              View all {allWork.length} projects →
+            </a>
+          </div>
+        )
+      }
+    </section>
+  </ScrollReveal>
 
-  </section>
+  <ScrollReveal>
+    <section id="blog" class="mx-auto max-w-3xl px-6 pb-20">
+      <SectionHeading eyebrow="From the blog" count={allPosts.length} />
+      <div>
+        {recentPosts.map((entry) => <BlogRow entry={entry} />)}
+      </div>
+      {
+        allPosts.length === 0 && (
+          <p class="text-ink-soft font-mono text-sm">Nothing published yet — check back soon.</p>
+        )
+      }
+      {
+        allPosts.length > recentPosts.length && (
+          <div class="mt-6">
+            <a
+              href="/blog"
+              class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
+            >
+              View all {allPosts.length} posts →
+            </a>
+          </div>
+        )
+      }
+    </section>
+  </ScrollReveal>
 
-  <section id="currently" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="Currently" />
-    <p class="text-ink-soft max-w-xl">
-      <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Building</h2>
-      <p class="pt-1 pb-4">Asset lifecycle and employee self-service products in ServiceNow</p>
-      <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Exploring</h2>
-      <p class="pt-1 pb-4">Platform engineering, Astro, React, and AI-assisted development</p>
-      <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Writing about</h2>
-      <p class="pt-1 pb-4">IT asset management, integrations, and practical automation</p>
-    </p>
-  </section>
+  <ScrollReveal>
+    <section id="how_i_work" class="mx-auto max-w-3xl px-6 pb-20">
+      <SectionHeading eyebrow="How I work" />
+      <p class="text-ink-soft max-w-xl">
+        <ScrollReveal delay={0}>
+          <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+            01 Understand the problem
+          </h2>
+          <p class="pt-1 pb-4">
+            Interview stakeholders, review existing processes, and identify pain points.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+            02 Design the system
+          </h2>
+          <p class="pt-1 pb-4">
+            Define the data model, workflow, permissions, and integration points.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+            03 Build the smallest useful version
+          </h2>
+          <p class="pt-1 pb-4">Deliver an end-to-end product before expanding the feature set.</p>
+        </ScrollReveal>
+        <ScrollReveal delay={300}>
+          <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+            04 Operationalize it
+          </h2>
+          <p class="pb-4">Add reporting, documentation, ownership, and support processes.</p>
+        </ScrollReveal>
+      </p>
+      <Button href="/about" variant="ghost" class="mt-2">More about how I work →</Button>
+    </section>
+  </ScrollReveal>
 
-  <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
-    <SectionHeading eyebrow="Let's talk" />
-    <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">
-      Let’s talk about building practical products for complex IT operations.
-    </p>
-    <Button href="https://www.linkedin.com/in/eric-a-perez" variant="ghost" class="mt-4">Connect →</Button>
-  </section>
+  <ScrollReveal>
+    <section id="capabilities" class="mx-auto max-w-3xl px-6 pb-20">
+      <SectionHeading eyebrow="Capabilities" />
+
+      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <ScrollReveal delay={0}>
+          <div>
+            <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+              Platform Engineering
+            </h2>
+            <p class="pt-1 pb-4">
+              Scoped applications, Flow Designer, integrations, portals, workspaces
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <div>
+            <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+              Data & Reporting
+            </h2>
+            <p class="pt-1 pb-4">Data modeling, reporting, dashboards, and analytics</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <div>
+            <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+              IT Asset Management
+            </h2>
+            <p class="pt-1 pb-4">
+              Lifecycle automation, hardware governance, warranty and shipping workflows
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={300}>
+          <div>
+            <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">
+              Technical Toolkit
+            </h2>
+            <p class="pb-4">JavaScript, REST APIs, Angular, React, SQL/DAX/PowerQuery M, Astro</p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  </ScrollReveal>
+
+  <ScrollReveal>
+    <section id="currently" class="mx-auto max-w-3xl px-6 pb-20">
+      <SectionHeading eyebrow="Currently" />
+      <p class="text-ink-soft max-w-xl">
+        <ScrollReveal delay={0}>
+          <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Building</h2>
+          <p class="pt-1 pb-4">
+            IT asset management, integrations, and practical automation for complex IT operations
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Learning</h2>
+          <p class="pt-1 pb-4">
+            AI-assisted development, generative AI, and prompt engineering for IT operations
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={300}>
+          <h2 class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">Writing about</h2>
+          <p class="pt-1 pb-4">IT asset management, integrations, and practical automation</p>
+        </ScrollReveal> 
+      </p>
+    </section>
+  </ScrollReveal>
+
+  <ScrollReveal delay={300}>
+    <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
+      <SectionHeading eyebrow="Let's talk" />
+      <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">
+        Let’s talk about building practical products for complex IT operations.
+      </p>
+      <Button href="https://www.linkedin.com/in/eric-a-perez" variant="ghost" class="mt-4"
+        >Connect →</Button
+      >
+    </section>
+  </ScrollReveal>
 </BaseLayout>
