@@ -38,10 +38,8 @@ Desktop.ini
 # JetBrains IDE settings
 .idea/
 
-# VS Code local settings
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+# VS Code
+.vscode/
 
 # Editor swap files
 *.swp
