@@ -2,15 +2,15 @@
 // and SEO defaults all read from here instead of hardcoding copy.
 export const SITE = {
   name: 'Eric P',
-  role: 'ServiceNow Developer | IT Asset Management Product Builder',
+  role: 'ServiceNow Developer & Product Builder',
   email: 'eric@example.com',
-  tagline: 'I design and build ServiceNow solutions that turn operational problems into practical, maintainable products.',
+  tagline: 'I build ServiceNow solutions that turn operational problems into practical products people can actually use and maintain.',
   description:
-    'Portfolio of Eric P — product design and ServiceNow development, with an emphasis on speed, clarity, and the details most people skip.',
-  status: 'Currently building at Ryder · open to new work, Q4 2026',
+    'The portfolio of Eric, a ServiceNow developer and product builder focused on IT asset management, workflow automation, integrations, and practical enterprise solutions.',
+  status: 'Currently building in Miami, FL · Open to new work, Q4 2026',
   social: [
-    { label: 'GitHub', href: 'https://github.com/ericccp' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/eric-a-perez' },
+    { label: 'GitHub', href: 'https://github.com/ericccp' },
   ],
   locale: 'en',
 } as const;
@@ -19,4 +19,5 @@ export const NAV_LINKS = [
   { label: 'Work', href: '/work' },
   { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ] as const;

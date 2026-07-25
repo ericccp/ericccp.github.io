@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { SITE } from '@/site.config';
+
+const tools = ['ServiceNow', 'JavaScript', 'Python', 'Power Query M', 'DAX', 'REST APIs'];
+---
+
+<BaseLayout title="Contact" description={`Get in touch with ${SITE.name}.`}>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <p class="text-ink-soft mb-6 font-mono text-xs tracking-[0.2em] uppercase">Let's Connect</p>
+
+    <h1 class="font-display text-ink max-w-xl text-3xl font-medium sm:text-4xl">
+      Let’s talk about building practical products for complex IT operations.
+    </h1>
+
+    <div class="prose prose-sm sm:prose-base mt-8 max-w-xl">
+      <p>
+        I’m always interested in connecting with people working on ServiceNow, IT asset management, platform products, and enterprise automation.
+      </p>
+      <p>
+        Whether you want to compare approaches, discuss a project, or explore a new opportunity, feel free to reach out.
+      </p>
+    </div>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <Button href="https://www.linkedin.com/in/eric-a-perez" variant="primary">Connect →</Button>
+      <Button href="https://github.com/ericccp" variant="ghost">GitHub</Button>
+    </div>
+
+    
+  </section>
+</BaseLayout>

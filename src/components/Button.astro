@@ -1,7 +1,7 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'solid' | 'ghost';
+  variant?: 'solid' | 'ghost' | 'primary';
   class?: string;
 }
 
@@ -11,6 +11,7 @@ const base =
   'inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors';
 const variants = {
   solid: 'bg-ink text-paper hover:bg-signal',
+  primary: 'bg-signal text-paper hover:bg-ink',
   ghost: 'border border-line text-ink hover:border-signal hover:text-signal',
 };
 

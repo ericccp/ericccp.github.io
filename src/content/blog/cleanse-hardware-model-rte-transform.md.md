@@ -2,7 +2,7 @@
 title: Automating Hardware Model Creation During Vendor Imports
 summary: How I used ServiceNow's hardware model cleansing utility to create or match manufacturers and models during asset imports instead of maintaining them manually.
 type: solution
-date: 2026-07-25
+date: 2026-06-01
 tags: [ServiceNow, ITAM, Hardware Asset Management, Imports, JavaScript]
 featured: true
 draft: false

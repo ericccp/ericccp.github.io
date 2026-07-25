@@ -2,7 +2,7 @@
 title: UPS Shipping Integration
 summary: Connected ServiceNow directly to the UPS API so shipping labels and tracking numbers are generated and tracked without leaving the platform.
 role: ServiceNow Developer
-date: 2025-11-10
+date: 2026-07-01
 tags: [ServiceNow, REST Integration, UPS API, Shipping, Procurement]
 featured: true
 draft: false

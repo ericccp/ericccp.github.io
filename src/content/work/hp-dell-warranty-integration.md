@@ -2,7 +2,7 @@
 title: HP & Dell Warranty Integration
 summary: Automated warranty lookups against the HP and Dell APIs so hardware asset records stay accurate without anyone manually checking a serial number.
 role: ServiceNow Developer
-date: 2026-02-15
+date: 2026-01-01
 tags: [ServiceNow, REST Integration, Hardware Asset Management, HP, Dell]
 featured: true
 draft: false

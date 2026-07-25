@@ -2,7 +2,7 @@
 title: Employee Center My Assets Enhancement
 summary: Gave employees self-service visibility into their assigned hardware and software licenses directly inside Employee Center, reducing manual lookups for IT.
 role: ServiceNow Developer
-date: 2026-05-01
+date: 2026-03-01
 tags: [ServiceNow, Employee Center, Service Portal, HAM, SAM, JavaScript]
 featured: true
 draft: false
